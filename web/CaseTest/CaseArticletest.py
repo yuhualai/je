@@ -15,7 +15,6 @@ class Article(unittest.TestCase):
         self.driver = browser("chrome")
         self.login = ArticlePage(self.driver)
         self.login.open("http://chat.uat.zmops.cc/")
-        self.login
 
     def tearDown(self):
         self.driver.quit()
