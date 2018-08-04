@@ -6,26 +6,20 @@
 __author__ = 'hualai yu'
 
 import json
-from methon.methon import RunMethod
-
 import unittest
+
+from methon.methon import RunMethod
 
 
 class Test(unittest.TestCase):
     def setUp(self):
         self.run = RunMethod()
-        self.header = {'Content-Type': 'application/x-www-form-urlencoded'}
+        self.header = {'Content-Type': 'application/json'}
 
     def test_event_01(self):
-        url = "https://chat.zmlearn.com/api/lessonNew/findTeacherUnstartedLessonList"
-        data = json.dumps({
-            "access_token": "dc08a511-a667-4b48-806b-2711d6be9907",
-            "teacherId": "105105",
-
-        })
-        # res = mock_test(self.run.run_main, "Post", url, data, header, data)
-
-        res = self.run.run_main("Post", url, data, self.header)
+        url = "https://x-chat-test.zmlearn.com/api/training/dict/all?" \
+              "access_token=5662cade-2826-4456-99ff-02d55e394a20&userId=1325975609"
+        res = self.run.run_main("Get", url, self.header)
         print(res)
         # self.assertEqual(res['responseStatus']['errorcode'], 0, "测试成功")
 
@@ -42,8 +36,8 @@ class Test(unittest.TestCase):
 
         })
         res = self.run.run_main("Post", url, data, self.header)
-        # print(res)
-        self.assertEqual(res['responseStatus']['errorcode'], 0, "测试成功")
+        print(res)
+        # self.assertEqual(res['responseStatus']['errorcode'], 0, "测试成功")
 
     def test_columnist_01(self):
         url = "http://bos.liangyihui.net/bos/columnist/getcolumnistlist"
@@ -52,7 +46,8 @@ class Test(unittest.TestCase):
             "filter": {"pageIdx": 0, "pageSize": 500}
         })
         res = self.run.run_main("Post", url, data, self.header)
-        self.assertEqual(res['responseStatus']['errorcode'], 0, "测试成功")
+        print(res)
+        # self.assertEqual(res['responseStatus']['errorcode'], 0, "测试成功")
 
     def test_columnist_02(self):
         url = "http://bos.liangyihui.net/bos/columnist/getcolumnistlist"
